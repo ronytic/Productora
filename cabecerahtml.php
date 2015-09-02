@@ -41,4 +41,7 @@ $datosusuario=array_shift($datosusuario);
     <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script language="javascript">
+        var folder="<?php echo $folder?>";
+    </script>
     <script src="<?php echo $folder?>js/core/assets/skins.min.js"></script>
