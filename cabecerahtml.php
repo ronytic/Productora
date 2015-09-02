@@ -1,15 +1,17 @@
+<?php
+include_once($folder."class/menu.php");
+include_once($folder."class/submenu.php");
+include_once($folder."class/usuario.php");
+$menu=new menu;
+$submenu=new submenu;
+$usuario=new usuario;
+$Nivel=$_SESSION['Nivel'];
+$CodUsuarioLog=$_SESSION['CodUsuarioLog'];
+$datosusuario=$usuario->mostrarDatos($CodUsuarioLog);
+$datosusuario=array_shift($datosusuario);
+?>
 <!DOCTYPE html>
-<!--
-BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 1.4.2
-Purchase: http://wrapbootstrap.com
--->
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-<!-- Head -->
-
-<!-- Mirrored from beyondadmin-v1.4.2.s3-website-us-east-1.amazonaws.com/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Aug 2015 00:52:30 GMT -->
 <head>
     <meta charset="utf-8" />
     <title>Productora AudioVisual</title>

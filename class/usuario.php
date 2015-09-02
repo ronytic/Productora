@@ -4,15 +4,15 @@ class usuario extends bd{
 	var $tabla="usuarios";
 	function mostrarDatos($CodUsuario){
 		$this->campos=array("*");
-		return $this->getRecords("CodUsuario=$CodUsuario and Activo=1");
+		return $this->getRecords("codusuarios=$CodUsuario and activo=1");
 	}
 	function mostrarUsuarios($menos=""){
 		$menos=$menos?"$menos and ":'';
 		$this->campos=array("*");
-		return $this->getRecords("$menos Activo=1","Paterno,Materno,Nombres");
+		return $this->getRecords("$menos activo=1","paterno,materno,nombre");
 	}
 	function actualizarDatos($valores,$CodUsuario){
-		return $this->updateRow($valores,"CodUsuario=$CodUsuario");
+		return $this->updateRow($valores,"codusuarios=$CodUsuario");
 	}
 	
 	function loginUsuarios($Usuario,$Password){

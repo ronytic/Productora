@@ -29,50 +29,29 @@
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
                         <ul class="account-area">
-                            <li>
-                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Help" href="#">
-                                    <i class="icon fa fa-warning"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Mails" href="#">
-                                    <i class="icon fa fa-envelope"></i>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">
-                                    <i class="icon fa fa-tasks"></i>
-                                   
-                                </a>
-                            </li>
-                            <li>
-                                <a class="wave in" id="chat-link" title="Chat" href="#">
-                                    <i class="icon glyphicon glyphicon-comment"></i>
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
-                                        <img src="<?php echo $folder?>imagenes/usuarios/alexvargas.jpg">
+                                        <img src="<?php echo $folder?>imagenes/usuarios/<?php echo $datosusuario['foto']?>">
                                     </div>
                                     <section>
-                                        <h2><span class="profile"><span>Alex Vargas</span></span></h2>
+                                        <h2><span class="profile"><span><?php echo $datosusuario['nombre']?> <?php echo $datosusuario['paterno']?> <?php echo $datosusuario['materno']?></span></span></h2>
                                     </section>
                                 </a>
                                 <!--Login Area Dropdown-->
                                 <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                    <li class="username"><a>Alex Vargas</a></li>
-                                    <li class="email"><a>casacomandogaff@hotmail.com</a></li>
+                                    <li class="username"><a><?php echo $datosusuario['nombre']?> <?php echo $datosusuario['paterno']?> <?php echo $datosusuario['materno']?></a></li>
+                                    <li class="email"><a><?php echo $datosusuario['usuario']?></a></li>
                                     <!--Avatar Area-->
                                     <li>
                                         <div class="avatar-area">
-                                            <img src="<?php echo $folder?>imagenes/usuarios/alexvargas.jpg" class="avatar">
+                                            <img src="<?php echo $folder?>imagenes/usuarios/<?php echo $datosusuario['foto']?>" class="avatar">
                                         </div>
                                     </li>
                                     <!--Avatar Area-->
                                     <li class="edit">
-                                        <a href="profile.html" class="pull-left">Cambiar Contraseña</a>
+                                        <a href="usuarios/cambiar.php" class="pull-left">Cambiar Contraseña</a>
                                     </li>
                                     <li class="dropdown-footer">
                                         <a href="<?php echo $folder?>/login/logout.php">
@@ -103,80 +82,40 @@
             <div class="page-sidebar" id="sidebar">
                 <!-- Page Sidebar Header-->
                 <div class="sidebar-header-wrapper">
-                    <input type="text" class="searchinput" />
+                    <input type="text" class="searchinput" disabled />
                     <i class="searchicon fa fa-search"></i>
-                    <div class="searchhelper">Búqueda de productos</div>
+                    <div class="searchhelper">Búqueda</div>
                 </div>
                 <!-- /Page Sidebar Header -->
                 <!-- Sidebar Menu -->
                 <ul class="nav sidebar-menu">
                     <!--Dashboard-->
                     <li>
-                        <a href="<?php echo $folder;?>">
-                            <i class="menu-icon glyphicon glyphicon-home"></i>
-                            <span class="menu-text">Ventas</span>
+                        <a href="<?php echo $folder;?>" class="menu-dropdown">
+                            <i class="menu-icon fa fa-home"></i>
+                            <span class="menu-text"> Inicio </span>
                         </a>
-                    </li>
-                    
-                    
-                    <!--UI Elements-->
-                    <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text"> Productos </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="<?php echo $folder;?>productos/">
-                                    <span class="menu-text">Nuevo Producto</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo $folder;?>productos/listar.php">
-                                    <span class="menu-text">Listar Productos</span>
-                                </a>
-                            </li>
-                        </ul>
                      </li>
-                     <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text"> Inventario </span>
-                            <i class="menu-expand"></i>
-                        </a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="<?php echo $folder;?>productos/">
-                                    <span class="menu-text">Recargar Inventario</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo $folder;?>productos/listar.php">
-                                    <span class="menu-text">Revisar Inventario</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php foreach($menu->mostrar($Nivel) as $m){?>
                     <li>
-                        <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-print"></i>
-                            <span class="menu-text"> Reporte </span>
+                        <a href="<?php echo $folder;?>" class="menu-dropdown">
+                            <i class="menu-icon glyphicon glyphicon-expand"></i>
+                            <span class="menu-text"><?php echo $m['nombre']?></span>
                             <i class="menu-expand"></i>
                         </a>
-                        <ul class="submenu">
+                        <?php if($m['submenu']){?>
+                            <ul class="submenu">
+                            <?php foreach($submenu->mostrar($Nivel,$m['codmenu']) as $sm){?>
                             <li>
-                                <a href="<?php echo $folder;?>productos/">
-                                    <span class="menu-text">Estado del Inventario</span>
+                                <a href="<?php echo $folder;?><?php echo $m['url']?><?php echo $sm['url']?>">
+                                    <span class="menu-text"><?php echo $sm['nombre']?></span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?php echo $folder;?>productos/listar.php">
-                                    <span class="menu-text">Ventas del Día</span>
-                                </a>
-                            </li>
-                        </ul>
+                            <?php }?>
+                            </ul>
+                        <?php }?>
                     </li>
+                    <?php }?>
                 </ul>
                 <!-- /Sidebar Menu -->
             </div>
