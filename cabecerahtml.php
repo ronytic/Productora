@@ -28,9 +28,8 @@ $datosusuario=array_shift($datosusuario);
     <link href="<?php echo $folder?>css/core/assets/font-awesome.min.css" rel="stylesheet" />
     <link href="<?php echo $folder?>css/core/assets/weather-icons.min.css" rel="stylesheet" />
 
-    <!--Fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
-          rel="stylesheet" type="text/css">
+    <!--Fonts
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"  rel="stylesheet" type="text/css">-->
 
     <!--Beyond styles-->
     <link id="beyond-link" href="<?php echo $folder?>/css/core/assets/beyond.min.css" rel="stylesheet" />
