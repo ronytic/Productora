@@ -151,5 +151,5 @@
                 </div>
                 <!-- /Page Header -->
                 <!-- Page Body -->
-                <div class="page-body" style="background-image:url(imagenes/assets/comando8.jpg);background-size:cover">
+                <div class="page-body" style="background-size:cover">
                 <div class="row">
