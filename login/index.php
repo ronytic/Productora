@@ -70,7 +70,7 @@ $folder="../";
                 <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario" autofocus/>
             </div>
             <div class="loginbox-textbox">
-                <input type="text" class="form-control" placeholder="Contraseña" name="pass" id="pass"/>
+                <input type="password" class="form-control" placeholder="Contraseña" name="pass" id="pass"/>
             </div>
             <div class="loginbox-submit">
                 <input type="submit" class="btn btn-primary btn-block" value="Ingresar">

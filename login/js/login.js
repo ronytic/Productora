@@ -9,13 +9,8 @@ $(document).ready(function(){
 			$("#pass").focus();
 			event.preventDefault();	
 		}else{
-			//$.pos($(this).attr("action"),{"usuario":$("#usuario").val(),"pass":$("pass").val()});
+			
 		}
 		
-	});
-	$(".ayuda").click(function(e){e.preventDefault();}).popover({title:AyudaTitulo+$('#noticerrar').html(),html : true,placement:'bottom',content:$('#AyudaCuerpo').html()})
-	$(document).on("click",'#cerrarnoti',function(e){
-		e.preventDefault();
-		$(".ayuda").popover('hide');
 	});
 });
