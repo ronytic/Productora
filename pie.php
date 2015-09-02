@@ -11,13 +11,13 @@
     </div>
 
     <!--Basic Scripts-->
-    <script src="js/core/jquery.min.js"></script>
-    <script src="js/core/bootstrap.min.js"></script>
-    <script src="js/core/plugins/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo $folder?>js/core/jquery.min.js"></script>
+    <script src="<?php echo $folder?>js/core/bootstrap.min.js"></script>
+    <script src="<?php echo $folder?>js/core/plugins/jquery.slimscroll.min.js"></script>
 
     <!--Beyond Scripts-->
-    <script src="js/core/assets/beyond.min.js"></script>
-
+    <script src="<?php echo $folder?>js/core/assets/beyond.min.js"></script>
+    
     <!--Page Related Scripts-->
     <!--Google Analytics::Demo Only-->
 </body>
