@@ -24,6 +24,7 @@ $datosusuario=array_shift($datosusuario);
 
     <!--Basic Styles-->
     <link href="<?php echo $folder?>css/core/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?php echo $folder?>css/core/core.css" rel="stylesheet" />
     <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
     <link href="<?php echo $folder?>css/core/assets/font-awesome.min.css" rel="stylesheet" />
     <link href="<?php echo $folder?>css/core/assets/weather-icons.min.css" rel="stylesheet" />
@@ -38,7 +39,7 @@ $datosusuario=array_shift($datosusuario);
     <link href="<?php echo $folder?>css/core/assets/typicons.min.css" rel="stylesheet" />
     <link href="<?php echo $folder?>css/core/assets/animate.min.css" rel="stylesheet" />
     <link id="skin-link" href="#" rel="stylesheet" type="text/css" />
-
+<script src="<?php echo $folder?>js/core/jquery.min.js"></script>
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
     <script language="javascript">
         var folder="<?php echo $folder?>";

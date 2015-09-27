@@ -11,7 +11,7 @@
     </div>
 
     <!--Basic Scripts-->
-    <script src="<?php echo $folder?>js/core/jquery.min.js"></script>
+    
     <script src="<?php echo $folder?>js/core/bootstrap.min.js"></script>
     <script src="<?php echo $folder?>js/core/plugins/jquery.slimscroll.min.js"></script>
     <script src="<?php echo $folder?>js/core/plugins/jquery.form.js"></script>
