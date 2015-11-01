@@ -17,9 +17,40 @@ include_once("../../class/tipo.php");
 $tipo=new tipo;
 $tip=$tipo->mostrarTodoRegistro("",0,"nombre");
 
+include_once("../../class/resolucion.php");
+$resolucion=new resolucion;
+$res=$resolucion->mostrarTodoRegistro("",0,"nombre");
+
+
+
+
 $titulo="Subir Nuevo Video";
 include_once($folder."cabecerahtml.php");
+$usus=$usuario->mostrarTodoRegistro("",0,"paterno,materno,nombre");
 ?>
+<script language="javascript">
+$(document).on("ready",function(){
+    listar(); 
+    $("#agregarmiembro").click(function(e) {
+        e.preventDefault();
+        var codusuario=$("#miembro").val();
+        $.post("agregarmiembro.php",{"codusuario":codusuario},function(){
+            listar();
+        });
+    });
+    $("#vaciarmiembros").click(function(e) {
+        e.preventDefault();
+        $.post("vaciar.php","",function(){
+            listar();
+        });
+    });
+});
+function listar(){
+    $.post("listarmiembros.php",{},function(data){
+        $("#listamiembros").html(data);    
+    });    
+}
+</script>
 <?php include_once($folder."cabecera.php");?>
 <div class="col-lg-12 col-sm-12 col-xs-12">
     <div class="well with-header with-footer">
@@ -54,8 +85,16 @@ include_once($folder."cabecerahtml.php");
             <br>
             <label>
                 Equipo:
-                <textarea class="form-control input-ls" name="equipo" cols="50" rows="5"></textarea>
-            </label>
+            <fieldset class="border">
+                Miembro: <select id="miembro">
+                <?php foreach($usus as $us){?>
+                <option value="<?php echo $us['codusuarios']?>"><?php echo $us['paterno']?> <?php echo $us['materno']?> <?php echo $us['nombre']?> - <?php echo $us['cargo']?></option>
+                <?php }?>
+                </select><a href="#" class="btn btn-success btn-xs" id="agregarmiembro">Agregar</a> <a href="#" class="btn btn-danger btn-xs" id="vaciarmiembros">Vaciar</a>
+                <div id="listamiembros">
+                
+                </div>
+            </fieldset>
             <br>
             <label>
                 Lugar de Grabación:
@@ -80,8 +119,20 @@ include_once($folder."cabecerahtml.php");
             <br>
             
             <label>
-                Archivo del Video:
-                <input type="file" class="form-control input-ls" name="archivovideo" autofocus size="50" value="00:00:00">
+                Archivo del Video MP4 Obligatorio: <span class="badge badge-info">Para la Vista Previa en el Sistema</span>
+                <input type="file" class="form-control input-ls" name="archivovideomp4" autofocus size="50" value="00:00:00" required>
+            </label>
+            <br>
+            
+            <label>
+                Archivo del Video MOV:
+                <input type="file" class="form-control input-ls" name="archivovideomov" autofocus size="50" value="00:00:00" >
+            </label>
+            <br>
+            
+            <label>
+                Archivo del Video AVI:
+                <input type="file" class="form-control input-ls" name="archivovideoavi" autofocus size="50" value="00:00:00" >
             </label>
             <br>
             <label>
@@ -102,7 +153,14 @@ include_once($folder."cabecerahtml.php");
                </select>
             </label>
             <br>
-            
+            <label>
+                Resolución:<br>
+               <select name="codtipo"  class="form-control">
+               <?php foreach($res as $r){?>
+                <option value="<?php echo $r['codresolucion']?>"><?php echo $r['nombre']?></option>   
+               <?php }?>
+               </select>
+            </label>
             </td>       
         </tr>
         <tr>
