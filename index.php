@@ -7,14 +7,14 @@ include_once("cabecerahtml.php");
 <?php include_once("cabecera.php");?>
 <div class="col-lg-3 col-sm-12 col-xs-12">
     <div class="well with-header with-footer">
-        <div class="header bordered-blue">Búqueda Producto</div>
+        <div class="header bordered-blue">Búqueda </div>
         <form class="formulario" method="post">
         <label>
-            Código de Producto:
+            Código de:
             <input type="text" class="form-control input-xs" name="codigo" autofocus>
         </label>
         <label>
-            Producto:<br>
+            
            <select name="codproducto">
             <option class="%">Todos</option>
            </select>
