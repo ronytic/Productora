@@ -20,6 +20,8 @@ $tip=$tipo->mostrarTodoRegistro("",0,"nombre");
 $titulo="Búsqueda de Videos";
 include_once($folder."cabecerahtml.php");
 ?>
+<link href="<?php echo $folder?>css/core/jplayer/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo $folder?>js/core/plugins/jplayer/jquery.jplayer.min.js"></script>
 <?php include_once($folder."cabecera.php");?>
 <div class="col-lg-12 col-sm-12 col-xs-12">
     <div class="well with-header with-footer">
