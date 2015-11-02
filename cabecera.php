@@ -137,13 +137,10 @@
                     </div>
                     <!--Header Buttons-->
                     <div class="header-buttons">
-                        <a class="sidebar-toggler" href="#">
+                        <a class="sidebar-toggler" href="#" title="Expandir">
                             <i class="fa fa-arrows-h"></i>
                         </a>
-                        <a class="refresh" id="refresh-toggler" href="#">
-                            <i class="glyphicon glyphicon-refresh"></i>
-                        </a>
-                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <a class="fullscreen" id="fullscreen-toggler" href="#" title="Maximizar">
                             <i class="glyphicon glyphicon-fullscreen"></i>
                         </a>
                     </div>
