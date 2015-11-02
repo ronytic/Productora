@@ -1,7 +1,7 @@
 <?php
 include_once("bd.php");
 class usuario extends bd{
-	var $tabla="usuarios";
+	var $tabla="usuario";
 	function mostrarDatos($CodUsuario){
 		$this->campos=array("*");
 		return $this->getRecords("codusuarios=$CodUsuario and activo=1");
