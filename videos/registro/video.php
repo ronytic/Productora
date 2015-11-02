@@ -155,7 +155,7 @@ $(document).on("ready",function(){
         <div class="header bordered-orange">Videos Relacionados</div>
         <div style="overflow-x:scroll">
         <?php
-        $vid=$video->getRecords("codtematica=".$vid['codtematica']." ORDER BY rand() LIMIT 0,10");
+        $vid=$video->getRecords("codtematica=".$vid['codtematica']." and codvideo!=".$codvideo." ORDER BY rand() LIMIT 0,10");
         ?>
         <table class="table table-bordered">
            <thead>
