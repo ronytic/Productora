@@ -45,7 +45,17 @@ $(document).on("ready",function(){
     $(document).on("click","#cerrar",function(e){
         e.preventDefault();
         window.close();
-    })    
+    })    ;
+    $(document).on("click","#eliminar",function(e){
+        e.preventDefault();
+        if(confirm("¿Desea Eliminar este Video?")){
+            var codvideo=$(this).attr("rel");
+            $.post("eliminar.php",{"codvideo":codvideo},function(data){
+               window.close();       
+           });
+            
+        }
+    });
 })
 </script>
 <?php include_once($folder."cabecera.php");?>
@@ -146,6 +156,10 @@ $(document).on("ready",function(){
                 <td><?php echo $tip['nombre']?></td>
             </tr>
         </table>
+        <br>
+        <?php if($_SESSION['CodUsuarioLog']==$vid['id']){?>
+        <a href="#" class="btn  btn-danger" id="eliminar" rel="<?php echo $codvideo?>">¿Eliminar Video?</a>
+        <?php }?>
     </div>
 </div>
 </div>

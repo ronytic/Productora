@@ -54,6 +54,7 @@ if(!empty($miembros)){
                         );
         $equipo->insertarRegistro($valores);
     }
+    $_SESSION['miembros']="";
 }
 $titulo="Archivo de Video Guardado Correctamente";
 }
