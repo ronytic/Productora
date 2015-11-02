@@ -10,8 +10,10 @@ extract($_POST);
 /*echo "<pre>";
 print_r($_POST);
 echo "</pre>";*/
-$condicion="nombre LIKE '$nombre%' and codformato LIKE '$codformato' and codtematica LIKE '$codtematica' and codtipo LIKE '$codtipo' and codsoporte LIKE '$codsoporte' and fechavideo BETWEEN '$fechainicio' and '$fechafinal'";
-$vid=$video->mostrarTodoRegistro($condicion,"","fechavideo");
+$video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=v.codvideo) as descarga ");
+$video->tabla="video v";
+$condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 ORDER BY $orden $order";
+$vid=$video->getRecords($condicion);
 include_once("../../class/tematica.php");
 $tematica=new tematica;
 ?>
@@ -74,23 +76,17 @@ $tematica=new tematica;
     
     
     -->
-    <?php
-    
-    $des=$descargas->cantidadDescargas($v['codvideo']);
-    $des=array_shift($des);
-    $cantidad=$des['cantidad'];
-    ?>
     <video src="../../archivosvideos/mp4/<?php echo $v['videomp4']?>" width="290" controls preload="none"></video>
     
     <table class="table table-bordered">
     <tr>
-        <td><?php echo $v['contenido']?></td>
+        <td><?php echo recortarTexto($v['contenido'],200)?></td>
     </tr>
     </table>
     
-    <span class="badge badge-danger"><?php echo $tem['nombre']?></span>
-    <span class="badge badge-info"><?php echo fecha2Str($v['fechavideo'])?></span>
-    <span class="badge badge-orange">Descargas: <?php echo $cantidad?></span>
+    <span class="badge badge-orange"><?php echo $tem['nombre']?></span>
+    <span class="badge badge-orange"><?php echo fecha2Str($v['fechavideo'])?></span>
+    <span class="badge badge-orange">Descargas: <?php echo $v['descarga']?></span>
     <br><br>
     <a href="video.php?codvideo=<?php echo $v['codvideo']?>" target="_blank" class="btn btn-darkorange">Ver Video</a>
     <div class="btn-group btn-group-sm" role="group" aria-label="...">

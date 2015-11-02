@@ -36,6 +36,7 @@ include_once($folder."cabecerahtml.php");
                     <th>Tipo</th>
                     <th>Soporte</th>
                     <th>Fecha</th>
+                    <th>Ordenar Por</th>
                     <th></th>
                 </tr>
             </thead>
@@ -43,7 +44,7 @@ include_once($folder."cabecerahtml.php");
                 <td>
                 <label>
 
-                    <input type="text" class="form-control input-ls" name="nombre" autofocus size="30">
+                    <input type="text" class="form-control input-ls" name="nombre" autofocus size="20">
                 </label>
                 </td>
                 <td>
@@ -92,6 +93,19 @@ include_once($folder."cabecerahtml.php");
 
                     Hasta:<br>
                     <input type="date" class="form-control input-ls" name="fechafinal" value="<?php echo date("Y-m-d");?>" required>
+                </td>
+                <td>
+                <select name="orden">
+                    <option value="fechavideo">Fecha</option>
+                    <option value="descarga">Descargas</option>
+                    <option value="nombre">Nombre</option>
+                </select>
+                <br>
+                 <select name="order">
+                    <option value="ASC">Ascendente</option>
+                    <option value="DESC">Descendente</option>
+                </select>
+                
                 </td>
                 <td><br>
                     <input type="submit" value="Buscar" class="btn btn-blue">
