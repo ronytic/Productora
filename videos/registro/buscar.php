@@ -14,6 +14,10 @@ $video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=
 $video->tabla="video v";
 $condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 ORDER BY $orden $order";
 $vid=$video->getRecords($condicion);
+if(count($vid)==0){
+    echo "No se encontro ningún video con los criterios de búsqueda seleccionados.";
+exit();    
+}
 include_once("../../class/tematica.php");
 $tematica=new tematica;
 ?>
