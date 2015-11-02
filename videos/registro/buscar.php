@@ -90,9 +90,15 @@ $tematica=new tematica;
     <br><br>
     <a href="video.php?codvideo=<?php echo $v['codvideo']?>" target="_blank" class="btn btn-darkorange">Ver Video</a>
     <div class="btn-group btn-group-sm" role="group" aria-label="...">
+    <?php if($v['videomp4']!=""){?>
     <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=mp4" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mp4</a>
+    <?php }?>
+    <?php if($v['videomov']!=""){?>
     <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=mov" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mov</a>
+    <?php }?>
+    <?php if($v['videoavi']!=""){?>
     <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=avi" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Avi</a>
+    <?php }?>
     </div>
     </div>
 </div>

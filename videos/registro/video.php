@@ -81,10 +81,15 @@ $(document).on("ready",function(){
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                         <?php if($vid['videomp4']!=""){?>
                         <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=mp4" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Mp4</a> 
+                        <?php }?>
+                        <?php if($vid['videomov']!=""){?>
                         <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=mov" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Mov</a>
+                        <?php }?>
+                        <?php if($vid['videoavi']!=""){?>
                         <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=avi" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Avi</a>
-
+                        <?php }?>
                     </div>
                 </td>
                 <td>
