@@ -26,6 +26,7 @@ $res=$resolucion->mostrarTodoRegistro("",0,"nombre");
 
 $titulo="Subir Nuevo Video";
 include_once($folder."cabecerahtml.php");
+
 $usus=$usuario->mostrarTodoRegistro("",0,"paterno,materno,nombre");
 ?>
 <script language="javascript">
@@ -120,19 +121,19 @@ function listar(){
             
             <label>
                 Archivo del Video MP4 Obligatorio: <span class="badge badge-info">Para la Vista Previa en el Sistema</span>
-                <input type="file" class="form-control input-ls" name="archivovideomp4" autofocus size="50" value="00:00:00" required>
+                <input type="file" class="form-control input-ls" name="archivovideomp4" autofocus size="50" value="00:00:00" required accept=".mp4">
             </label>
             <br>
             
             <label>
                 Archivo del Video MOV:
-                <input type="file" class="form-control input-ls" name="archivovideomov" autofocus size="50" value="00:00:00" >
+                <input type="file" class="form-control input-ls" name="archivovideomov" autofocus size="50" value="00:00:00" accept=".mov">
             </label>
             <br>
             
             <label>
                 Archivo del Video AVI:
-                <input type="file" class="form-control input-ls" name="archivovideoavi" autofocus size="50" value="00:00:00" >
+                <input type="file" class="form-control input-ls" name="archivovideoavi" autofocus size="50" value="00:00:00" accept=".avi">
             </label>
             <br>
             <label>

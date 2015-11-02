@@ -28,7 +28,16 @@ $tipo=new tipo;
 $tip=$tipo->mostrarTodoRegistro("codtipo=".$vid['codtipo'],0,"nombre");
 $tip=array_shift($tip);
 
-$titulo="Subir Nuevo Video";
+include_once("../../class/descargas.php");
+$descargas=new descargas;
+$des=$descargas->cantidadDescargas($codvideo);
+$des=array_shift($des);
+$cantidad=$des['cantidad'];
+
+include_once("../../class/equipo.php");
+$equipo=new equipo;
+$miembros=$equipo->mostrarTodoRegistro("codvideo=".$codvideo,0,"");
+$titulo="Datos del Video";
 include_once($folder."cabecerahtml.php");
 ?>
 <script language="javascript">
@@ -43,11 +52,37 @@ $(document).on("ready",function(){
 <div class="col-lg-7 col-sm-7 col-xs-7">
     <div class="well with-header with-footer">
         <div class="header bordered-gold"><?php echo $vid['nombre']?></div>
-        <video src="../../archivosvideos/<?php echo $vid['video']?>" controls width="550" preload="auto">
+        <video src="../../archivosvideos/mp4/<?php echo $vid['videomp4']?>" controls width="530" preload="auto">
         
         </video>
         <hr>
-        <a href="#" class="btn btn-lg btn-danger" id="cerrar">Cerrar Video</a>
+        
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th width="50">Cantidad de Descargas</th>
+                    <th>Descargar</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <center><h2 style="margin:0px !important;padding:0px !important;line-height:0px !important"><span class="label label-info"><?php echo $cantidad?></span></h2></center>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=mp4" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Mp4</a> 
+                        <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=mov" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Mov</a>
+                        <a href="descargar.php?codvideo=<?php echo $codvideo?>&tipo=avi" target="_blank" class="btn btn-lg btn-success"> <i class="glyphicon glyphicon-download glyphicon-blue"></i>Video Avi</a>
+
+                    </div>
+                </td>
+                <td>
+                <a href="#" class="btn btn-sm btn-danger" id="cerrar">Cerrar Video</a>
+                </td>
+            </tr>
+        </table>
+        
     </div>
 </div>
 <div class="col-lg-5 col-sm-5 col-xs-5">
@@ -64,7 +99,7 @@ $(document).on("ready",function(){
             </tr>
             <tr>
                 <td class="der resaltar">Fecha del Video</td>
-                <td><?php echo $vid['fechavideo']?></td>
+                <td><?php echo fecha2Str($vid['fechavideo'])?></td>
             </tr>
              <tr>
                 <td class="der resaltar">Temática</td>
@@ -76,7 +111,23 @@ $(document).on("ready",function(){
             </tr>
              <tr>
                 <td class="der resaltar">Equipo</td>
-                <td><?php echo $vid['equipo']?></td>
+                <td>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Miembro</th>
+                                <th>Cargo</th>
+                            </tr>
+                        </thead>
+                    <?php foreach($miembros as $m){
+                    $usus=$usuario->mostrarTodoRegistro("codusuarios=".$m['codusuarios'],0,"paterno,materno,nombre");
+                    $usus=array_shift($usus);
+                    ?>
+                    <tr><td><?php echo $usus['paterno']?> <?php echo $usus['materno']?> <?php echo $usus['nombre']?></td><td><?php echo $usus['cargo']?></td></tr>
+                    <?php
+                    }?>
+                    </table>      
+               </td>
             </tr>
              <tr>
                 <td class="der resaltar">Duración</td>
@@ -95,8 +146,46 @@ $(document).on("ready",function(){
                 <td><?php echo $tip['nombre']?></td>
             </tr>
         </table>
-        <br>
-        <a href="descargar.php?codvideo=<?php echo $codvideo?>" target="_blank" class="btn btn-lg btn-darkorange">Descargar Video</a>
+    </div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-sm-12 col-xs-12">
+    <div class="well with-header with-footer">
+        <div class="header bordered-orange">Videos Relacionados</div>
+        <div style="overflow-x:scroll">
+        <?php
+        $vid=$video->getRecords("codtematica=".$vid['codtematica']." ORDER BY rand() LIMIT 0,10");
+        ?>
+        <table class="table table-bordered">
+           <thead>
+            <tr>
+             <?php 
+            foreach($vid as $v){
+            ?>
+            <th><?php echo $v['nombre']?></th>
+            <?php
+            }?>
+            </tr>
+           </thead>
+        <tr>
+        <?php 
+        
+        foreach($vid as $v){
+            ?>
+            <td>
+           <video src="../../archivosvideos/mp4/<?php echo $v['videomp4']?>" width="290" controls preload="none"></video>
+           <br>
+           <?php echo recortarTexto($v['contenido'],100)?>
+           <hr>
+           <a href="video.php?codvideo=<?php echo $v['codvideo']?>"  class="btn btn-darkorange">Ver Video</a>
+           </td>
+            <?php
+        }
+        ?>
+        </tr>
+        </table>
+        </div>
     </div>
 </div>
 <?php include_once($folder."pie.php");?>

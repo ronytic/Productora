@@ -72,7 +72,7 @@ $tematica=new tematica;
     
     -->
     
-    <video src="../../archivosvideos/<?php echo $v['video']?>" width="290" controls preload="none"></video>
+    <video src="../../archivosvideos/mp4/<?php echo $v['videomp4']?>" width="290" controls preload="none"></video>
     
     <table class="table table-bordered">
     <tr>
@@ -83,6 +83,11 @@ $tematica=new tematica;
     <span class="badge badge-danger"><?php echo $tem['nombre']?></span>
     <span class="badge badge-info"><?php echo $v['fechavideo']?></span><br><br>
     <a href="video.php?codvideo=<?php echo $v['codvideo']?>" target="_blank" class="btn btn-darkorange">Ver Video</a>
+    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mp4</a>
+    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mov</a>
+    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Avi</a>
+    </div>
     </div>
 </div>
 <?php 

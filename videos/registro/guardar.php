@@ -9,16 +9,22 @@ $equipo=new equipo;
 if(!empty($_POST)){
 extract($_POST);
 if($_FILES['archivovideomp4']['name']!=""){
-    @copy($_FILES['archivovideomp4']['tmp_name'],"../../archivosvideos/mp4/".$_FILES['archivovideomp4']['name']);    
-    $archivovideomp4=$_FILES['archivovideomp4']['name'];
+    $nombrearchivo=quitarSimbolosArchivo($_FILES['archivovideomp4']['name'],false);
+    $nombrearchivo=str_ireplace(" ","_",$nombrearchivo);
+    @copy($_FILES['archivovideomp4']['tmp_name'],"../../archivosvideos/mp4/".$nombrearchivo);    
+    $archivovideomp4=$nombrearchivo;
 }
 if($_FILES['archivovideomov']['name']!=""){
-    @copy($_FILES['archivovideomov']['tmp_name'],"../../archivosvideos/".$_FILES['archivovideomov']['name']);    
-    $archivovideomov=$_FILES['archivovideomov']['name'];
+    $nombrearchivo=quitarSimbolosArchivo($_FILES['archivovideomov']['name'],false);
+    $nombrearchivo=str_ireplace(" ","_",$nombrearchivo);
+    @copy($_FILES['archivovideomov']['tmp_name'],"../../archivosvideos/mov/".$nombrearchivo);    
+    $archivovideomov=$nombrearchivo;
 }
 if($_FILES['archivovideoavi']['name']!=""){
-    @copy($_FILES['archivovideoavi']['tmp_name'],"../../archivosvideos/".$_FILES['archivovideoavi']['name']);    
-    $archivovideoavi=$_FILES['archivovideoavi']['name'];
+    $nombrearchivo=quitarSimbolosArchivo($_FILES['archivovideoavi']['name'],false);
+    $nombrearchivo=str_ireplace(" ","_",$nombrearchivo);
+    @copy($_FILES['archivovideoavi']['tmp_name'],"../../archivosvideos/avi/".$nombrearchivo);    
+    $archivovideoavi=$nombrearchivo;
 }
 $valores=array("nombre"=>"'$nombre'",
                 "contenido"=>"'$contenido'",
@@ -26,7 +32,6 @@ $valores=array("nombre"=>"'$nombre'",
                 "codtematica"=>"'$codtematica'",
                 "codformato"=>"'$codformato'",
                 "codresolucion"=>"'$codresolucion'",
-                "equipo"=>"'$equipo'",
                 "duracion"=>"'$duracion'",
                 "videomp4"=>"'$archivovideomp4'",
                 "videoavi"=>"'$archivovideoavi'",
