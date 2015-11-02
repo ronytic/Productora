@@ -50,9 +50,9 @@
                                         </div>
                                     </li>
                                     <!--Avatar Area-->
-                                    <li class="edit">
+                                    <!--<li class="edit">
                                         <a href="usuarios/cambiar.php" class="pull-left">Cambiar Contraseña</a>
-                                    </li>
+                                    </li>-->
                                     <li class="dropdown-footer">
                                         <a href="<?php echo $folder?>/login/logout.php">
                                             Salir del Sistema
