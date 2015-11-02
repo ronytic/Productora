@@ -8,7 +8,7 @@ $vid=$video->mostrarTodoRegistro("codvideo=".$codvideo,0,"");
 $vid=array_shift($vid);
 include_once("../../class/descargas.php");
 $descargas=new descargas;
-$descargas->insertarRegistro(array("codvideo"=>"$codvideo","tipo"=>"'$tipo'"));
+
 // File: download.php
 if (!isset($_GET['codvideo']) || empty($_GET['codvideo'])) {
     exit();
@@ -42,6 +42,7 @@ if (is_file($path)) {
     header("Content-Length: " . $size);
     // Download File
    readfile($path);
+   $descargas->insertarRegistro(array("codvideo"=>"$codvideo","tipo"=>"'$tipo'"));
 } else {
     die("No existe el archivo!!");
 }
