@@ -23,7 +23,7 @@ include_once("fpdf_protection.php");
 			global $title,$gestion,$titulo,$logo,$idioma;
 			$fecha=capitalizar(strftime("%A, %d ")).$idioma['De'].capitalizar(strftime(" %B ")).$idioma['De'].strftime(" %Y");
 			
-			$logo="comando.jpg";
+			$logo="logo.jpg";
 			$this->Image("../../imagenes/logo/".$logo,10,10,40,20);
 			$this->Fuente("",10);
 			$this->SetXY(34,12);
@@ -256,7 +256,5 @@ include_once("fpdf_protection.php");
 		}
 		/// Fin Tabla
 	}
-	function capitalizar($t){
-		return ucwords($t);
-	}
+
 ?>
