@@ -3,6 +3,9 @@ include_once("../../login/check.php");
 $folder="../../";
 include_once("../../class/video.php");
 $video=new video;
+include_once("../../class/descargas.php");
+    $descargas=new descargas;
+    
 extract($_POST);
 /*echo "<pre>";
 print_r($_POST);
@@ -71,7 +74,12 @@ $tematica=new tematica;
     
     
     -->
+    <?php
     
+    $des=$descargas->cantidadDescargas($v['codvideo']);
+    $des=array_shift($des);
+    $cantidad=$des['cantidad'];
+    ?>
     <video src="../../archivosvideos/mp4/<?php echo $v['videomp4']?>" width="290" controls preload="none"></video>
     
     <table class="table table-bordered">
@@ -81,12 +89,14 @@ $tematica=new tematica;
     </table>
     
     <span class="badge badge-danger"><?php echo $tem['nombre']?></span>
-    <span class="badge badge-info"><?php echo $v['fechavideo']?></span><br><br>
+    <span class="badge badge-info"><?php echo fecha2Str($v['fechavideo'])?></span>
+    <span class="badge badge-orange">Descargas: <?php echo $cantidad?></span>
+    <br><br>
     <a href="video.php?codvideo=<?php echo $v['codvideo']?>" target="_blank" class="btn btn-darkorange">Ver Video</a>
     <div class="btn-group btn-group-sm" role="group" aria-label="...">
-    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mp4</a>
-    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mov</a>
-    <a href="#" class="btn btn-success"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Avi</a>
+    <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=mp4" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mp4</a>
+    <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=mov" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Mov</a>
+    <a href="descargar.php?codvideo=<?php echo $v['codvideo']?>&tipo=avi" class="btn btn-success" target="_blank"><i class="glyphicon glyphicon-download glyphicon-blue"></i>Avi</a>
     </div>
     </div>
 </div>
