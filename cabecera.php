@@ -25,11 +25,23 @@
                     <i class="collapse-icon fa fa-bars"></i>
                 </div>
                 <!-- /Sidebar Collapse -->
+                <?php
+                switch($datosusuario['nivel']){
+                    case "1":{$nivel="Super Administrador";}break;
+                    case "2":{$nivel="Prensa";}break;
+                    case "3":{$nivel="Producción";}break;
+                    case "4":{$nivel="Programación";}break;
+                }
+                ?>
                 <!-- Account Area and Settings --->
                 <div class="navbar-header pull-right">
                     <div class="navbar-account">
                         <ul class="account-area">
-                            
+                             <li>
+                                <a class="btn btn-danger " data-toggle="dropdown" title="Notifications" href="#">  
+                                    <?php echo $nivel?>
+                                </a>
+                                </li>
                             <li>
                                 <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                     <div class="avatar" title="View your public profile">
@@ -82,9 +94,11 @@
             <div class="page-sidebar" id="sidebar">
                 <!-- Page Sidebar Header-->
                 <div class="sidebar-header-wrapper">
-                    <input type="text" class="searchinput" disabled />
+                    <!--<input type="text" class="searchinput" disabled />
                     <i class="searchicon fa fa-search"></i>
-                    <div class="searchhelper">Búqueda</div>
+                     <a href="" class="btn">Busqueda</a>
+                    <div class="searchhelper">Búqueda</div>-->
+                   
                 </div>
                 <!-- /Page Sidebar Header -->
                 <!-- Sidebar Menu -->
