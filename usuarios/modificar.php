@@ -28,23 +28,23 @@ $usus=array_shift($usus);
             <td>
             <label>
                 Usuario:
-                <input type="text" class="form-control input-ls" name="usuario" autofocus size="50" autocomplete="off" value="<?php echo $usus['usuario']?>">
+                <input type="text" class="form-control input-ls" name="usuario" autofocus size="50" autocomplete="off" value="<?php echo $usus['usuario']?>" required>
             </label>
             <br>
             <label>
                 Contraseña:
-                <input type="password" class="form-control input-ls" name="password"  size="50" value="">
+                <input type="password" class="form-control input-ls" name="password"  size="50" value="" required>
             </label>
             
             <br>
             <label>
                 Nombre:
-                <input type="text" class="form-control input-ls" name="nombre"  size="50" value="<?php echo $usus['nombre']?>">
+                <input type="text" class="form-control input-ls" name="nombre"  size="50" value="<?php echo $usus['nombre']?>" required>
             </label>
             <br>
             <label>
                 Apellido Paterno:
-                <input type="text" class="form-control input-ls" name="paterno"  size="50" value="<?php echo $usus['paterno']?>">
+                <input type="text" class="form-control input-ls" name="paterno"  size="50" value="<?php echo $usus['paterno']?>" required>
             </label>
             <br>
             <label>
@@ -78,7 +78,7 @@ $usus=array_shift($usus);
             <br>
             <label>
                 Celular:
-                <input type="text" class="form-control input-ls" name="celular"  size="50" value="<?php echo $usus['celular']?>">
+                <input type="text" class="form-control input-ls" name="celular"  size="50" value="<?php echo $usus['celular']?>" required>
             </label>
             <br>
             <label>

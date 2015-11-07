@@ -27,23 +27,23 @@ $usus=$usuario->mostrarTodoRegistro("",0,"paterno,materno,nombre");
             <td>
             <label>
                 Usuario:
-                <input type="text" class="form-control input-ls" name="usuario" autofocus size="50" autocomplete="off" value="">
+                <input type="text" class="form-control input-ls" name="usuario" autofocus size="50" autocomplete="off" value="" required>
             </label>
             <br>
             <label>
                 Contraseña:
-                <input type="password" class="form-control input-ls" name="password"  size="50">
+                <input type="password" class="form-control input-ls" name="password"  size="50" required>
             </label>
             
             <br>
             <label>
                 Nombre:
-                <input type="text" class="form-control input-ls" name="nombre"  size="50">
+                <input type="text" class="form-control input-ls" name="nombre"  size="50" required>
             </label>
             <br>
             <label>
                 Apellido Paterno:
-                <input type="text" class="form-control input-ls" name="paterno"  size="50">
+                <input type="text" class="form-control input-ls" name="paterno"  size="50" required>
             </label>
             <br>
             <label>
@@ -77,7 +77,7 @@ $usus=$usuario->mostrarTodoRegistro("",0,"paterno,materno,nombre");
             <br>
             <label>
                 Celular:
-                <input type="text" class="form-control input-ls" name="celular"  size="50">
+                <input type="text" class="form-control input-ls" name="celular"  size="50" required>
             </label>
             <br>
             <label>
