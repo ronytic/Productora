@@ -62,12 +62,12 @@ function listar(){
             <td>
             <label>
                 Nombre del Video:
-                <input type="text" class="form-control input-ls" name="nombre" autofocus size="50">
+                <input type="text" class="form-control input-ls" name="nombre" autofocus size="50" required>
             </label>
             <br>
             <label>
                 Contenido:
-                <textarea class="form-control input-ls" name="contenido" cols="50" rows="5"></textarea>
+                <textarea class="form-control input-ls" name="contenido" cols="50" rows="5" required></textarea>
             </label>
             <br>
             <label>
@@ -99,7 +99,7 @@ function listar(){
             <br>
             <label>
                 Lugar de Grabación:
-                <input type="text" class="form-control input-ls" name="lugardegrabacion" autofocus size="50">
+                <input type="text" class="form-control input-ls" name="lugardegrabacion" autofocus size="50" required>
             </label>
             <br>
             </td> 
