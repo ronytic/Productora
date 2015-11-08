@@ -219,6 +219,9 @@ class bd{
 			if(!isset($Values['CodUsuario'])&& empty($Values['CodUsuario'])){
 				$Values['id']="$CodUsuario";
 			}
+            if(!isset($Values['Nivel'])&& empty($Values['Nivel'])){
+				$Values['nivel']="$Nivel";
+			}
 			$Values['activo']=1;
 		}else{//,array("Activo"=>1)
 			$Values=array_merge	($Values);	
