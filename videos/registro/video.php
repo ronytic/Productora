@@ -174,7 +174,8 @@ $(document).on("ready",function(){
         <div class="header bordered-orange">Videos Relacionados</div>
         <div style="overflow-x:scroll">
         <?php
-        $vid=$video->getRecords("codtematica=".$vid['codtematica']." and codvideo!=".$codvideo." and activo=1 ORDER BY rand() LIMIT 0,10");
+        $Nivel=$_SESSION['Nivel'];
+        $vid=$video->getRecords("codtematica=".$vid['codtematica']." and codvideo!=".$codvideo." and nivel=$Nivel and activo=1 ORDER BY rand() LIMIT 0,10");
         ?>
         <table class="table table-bordered">
            <thead>

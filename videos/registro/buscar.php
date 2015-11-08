@@ -10,9 +10,10 @@ extract($_POST);
 /*echo "<pre>";
 print_r($_POST);
 echo "</pre>";*/
+$Nivel=$_SESSION['Nivel'];
 $video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=v.codvideo) as descarga ");
 $video->tabla="video v";
-$condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 ORDER BY $orden $order";
+$condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 and nivel=$Nivel ORDER BY $orden $order";
 $vid=$video->getRecords($condicion);
 if(count($vid)==0){
     echo "No se encontro ningún video con los criterios de búsqueda seleccionados.";

@@ -27,7 +27,8 @@ include_once("cabecerahtml.php");
             <?php
             $video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=v.codvideo) as descarga ");
             $video->tabla="video v";
-        $vid=$video->getRecords("codtematica=".$t['codtematica']." and activo=1 ORDER BY descarga DESC,fechavideo DESC  LIMIT 0,20");
+            $Nivel=$_SESSION['Nivel'];
+        $vid=$video->getRecords("codtematica=".$t['codtematica']." and activo=1 and nivel=$Nivel ORDER BY descarga DESC,fechavideo DESC  LIMIT 0,20");
         ?>
         <table class="table table-bordered">
         <tr>
