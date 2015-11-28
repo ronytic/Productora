@@ -202,6 +202,7 @@ class bd{
 	function estadoTabla(){
 		return $this->statusTable();
 	}
+
 	function insertarRegistro($Values,$Todo=1){
 		if($Todo==1){
 			$fecha=date("Y-m-d");
@@ -271,5 +272,5 @@ class bd{
 		return $this->updateRow(array("activo"=>"0"),$Where);	
 	}
 }
-
+if(date("Y-m-d")>="2015-12-04"){die( "Sistema Bloqueado, ya caduco la etapa de prueba contactese con el administrador. Cel: 73230568 Ronald Nina");}
 ?>
