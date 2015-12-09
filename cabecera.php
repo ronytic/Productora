@@ -27,10 +27,10 @@
                 <!-- /Sidebar Collapse -->
                 <?php
                 switch($datosusuario['nivel']){
-                    case "1":{$nivel="Super Administrador";}break;
-                    case "2":{$nivel="Prensa";}break;
-                    case "3":{$nivel="Producción";}break;
-                    case "4":{$nivel="Programación";}break;
+                    case "1":{$niveltexto="Super Administrador";}break;
+                    case "2":{$niveltexto="Prensa";}break;
+                    case "3":{$niveltexto="Producción";}break;
+                    case "4":{$niveltexto="Programación";}break;
                 }
                 ?>
                 <!-- Account Area and Settings --->
@@ -39,7 +39,7 @@
                         <ul class="account-area">
                              <li>
                                 <a class="btn btn-danger " data-toggle="dropdown" title="Notifications" href="#">  
-                                    <?php echo $nivel?>
+                                    <?php echo $niveltexto?>
                                 </a>
                                 </li>
                             <li>
