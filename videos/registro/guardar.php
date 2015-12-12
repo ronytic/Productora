@@ -5,7 +5,11 @@ include_once("../../class/video.php");
 $video=new video;
 include_once("../../class/equipo.php");
 $equipo=new equipo;
-//print_r($_POST);
+/*echo "<pre>";
+print_r($_POST);
+print_r($_SESSION);
+echo "</pre>";
+exit();*/
 if(!empty($_POST)){
 extract($_POST);
 if($_FILES['archivovideomp4']['name']!=""){
