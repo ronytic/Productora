@@ -156,7 +156,7 @@ function listar(){
             <br>
             <label>
                 Resolución:<br>
-               <select name="codtipo"  class="form-control">
+               <select name="codresolucion"  class="form-control">
                <?php foreach($res as $r){?>
                 <option value="<?php echo $r['codresolucion']?>"><?php echo $r['nombre']?></option>   
                <?php }?>
