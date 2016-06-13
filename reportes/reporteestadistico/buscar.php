@@ -9,17 +9,22 @@ $cabecera=array();
 $descargados=array();
 $subidos=array();
 $Nivel=$_SESSION['Nivel'];
+if($Nivel==1){
+    $textonivel="";
+}else{
+    $textonivel="and nivel=$Nivel";
+}
 for($i=strtotime($fechainicio); $i<=strtotime($fechafinal);$i=$i+86400){
     $fecha=date("Y-m-d",$i);
     //echo $i."-".$fecha."<br>";
     array_push($cabecera,"'".fecha2Str($fecha)."'");
     
-    $vid=$video->mostrarTodoRegistro("fechavideo='$fecha' and nivel=$Nivel");
+    $vid=$video->mostrarTodoRegistro("fechavideo='$fecha' $textonivel");
     $cantidadsubido=count($vid);
     array_push($subidos,$cantidadsubido);
     
     
-    $des=$descargas->cantidadDescargasWhere("fecha='$fecha' and nivel=$Nivel");
+    $des=$descargas->cantidadDescargasWhere("fecha='$fecha' $textonivel");
     $des=array_shift($des);
     $cantidaddes=$des['cantidad'];
     array_push($descargados,$cantidaddes);
