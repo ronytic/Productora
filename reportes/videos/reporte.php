@@ -12,6 +12,8 @@ include_once("../../class/tipo.php");
 $tipo=new tipo;
 include_once("../../class/soporte.php");
 $soporte=new soporte;
+include_once("../../class/usuario.php");
+$usuario=new usuario;
 include_once("../../impresion/pdf.php");
 extract($_GET);
 class PDF extends PPDF{
@@ -30,19 +32,25 @@ class PDF extends PPDF{
         $this->TituloCabecera(30,"Lugar");
         $this->TituloCabecera(30,"Tipo");
         $this->TituloCabecera(20,"Descargas");
+        $this->TituloCabecera(40,"Subido por");
 	}
 }
 $titulo="Reporte de Videos";
-$pdf=new PDF("L","mm","letter");
+$pdf=new PDF("L","mm","legal");
 $pdf->AddPage();
 /*    
 echo "<pre>";
 print_r($_GET);
 echo "</pre>";*/
 $Nivel=$_SESSION['Nivel'];
+if($Nivel==1){
+    $textonivel="";
+}else{
+    $textonivel="and nivel=$Nivel";
+}
 $video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=v.codvideo) as descarga ");
 $video->tabla="video v";
-$condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 and nivel=$Nivel ORDER BY $orden $order";
+$condicion="v.nombre LIKE '$nombre%' and v.codformato LIKE '$codformato' and v.codtematica LIKE '$codtematica' and v.codtipo LIKE '$codtipo' and v.codsoporte LIKE '$codsoporte' and v.fechavideo BETWEEN '$fechainicio' and '$fechafinal' and v.activo=1 $textonivel ORDER BY $orden $order";
 //echo $condicion;
 $vid=$video->getRecords($condicion);
 
@@ -59,6 +67,8 @@ foreach($vid as $v){$i++;
     $tem=$tematica->mostrarTodoRegistro("codtematica=".$v['codtematica'],"","");  
     $tem=array_shift($tem);
     
+    $usu=$usuario->mostrarTodoRegistro("codusuarios=".$v['id'],"","");  
+    $usu=array_shift($usu);
     $tip=$tipo->mostrarTodoRegistro("codtipo=".$v['codtipo'],"","");  
     $tip=array_shift($tip);
     if($i%2==0){$b=1;}else{$b=0;}
@@ -72,6 +82,7 @@ foreach($vid as $v){$i++;
     $pdf->CuadroCuerpo(30,$v['lugardegrabacion'],$b,"",1,"");
     $pdf->CuadroCuerpo(30,$tip['nombre'],$b,"",1,"");
     $pdf->CuadroCuerpo(20,$v['descarga'],$b,"R",1,"");
+    $pdf->CuadroCuerpo(40,$usu['paterno']." ".$usu['nombre'],$b,"L",1,"");
 
     $pdf->ln();
 }
