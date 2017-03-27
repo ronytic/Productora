@@ -44,7 +44,7 @@ print_r($_GET);
 echo "</pre>";*/
 $Nivel=$_SESSION['Nivel'];
 if($Nivel==1){
-    $textonivel="";
+    $textonivel="   and nivel LIKE '$nivelusuario'";
 }else{
     $textonivel="and nivel=$Nivel";
 }

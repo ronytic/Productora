@@ -105,7 +105,14 @@ include_once($folder."cabecerahtml.php");
                 </select>
                 
                 </td>
-                <td><br>
+                <td><?php if($_SESSION['Nivel']==1){?>Usuarios<select name="nivelusuario">
+                        <option value="%">Todos</option>
+                        <option value="1">SuperAdmin</option>
+                        <option value="2">Prensa</option>
+                        <option value="3">Producción</option>
+                        <option value="4">Programación</option>
+                    </select>
+                    <?php }?><br>
                     <input type="submit" value="Buscar" class="btn btn-blue">
                 </td>
             </tr>
