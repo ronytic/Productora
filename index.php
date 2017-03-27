@@ -12,34 +12,69 @@ $datos=array("blue","orange","danger","green");
 $titulo="Inicio de Sistema";
 include_once("cabecerahtml.php");
 ?>
+<script type="text/javascript">
+$(document).on("ready",function(){
+    $(".visible").click(function(e) {
+        e.preventDefault();
+        var rel=$(this).attr("rel");
+        if(rel=="Todos"){
+            $(".SuperAdmin,.Prensa,.Producción,.Programación").show();
+        }else{
+            $(".cv").hide();
+            $("."+rel).show();
+        }
+    });
+});$()
+</script>
 <?php include_once("cabecera.php");?> 
 <div style="">
 <?php foreach($tem as $t){?>
 <a href="#<?php echo $t['nombre']?>" class="btn btn-xs btn-warning"><?php echo $t['nombre']?></a>
 <?php }?>
+<?php if($_SESSION['Nivel']==1){?>
+<div class="pull-right">
+<a href="#" class="btn btn-xs btn-default visible" rel="Todos">Todos</a>
+<a href="#" class="btn btn-xs btn-default visible" rel="SuperAdmin">SuperAdmin</a>
+<a href="#" class="btn btn-xs btn-default visible" rel="Prensa">Prensa</a>
+<a href="#" class="btn btn-xs btn-default visible" rel="Producción">Producción</a>
+<a href="#" class="btn btn-xs btn-default visible" rel="Programación">Programación</a>
+</div>
+<?php }?>
 </div>
 <?php foreach($tem as $t){?>
 <a name="<?php echo $t['nombre']?>"></a>
     <div class="col-lg-12 col-sm-12 col-xs-12">
-        <div class="well with-header with-footer">
+        <div class="well with-header with-footer" >
             <div class="header bordered-<?php echo $datos[rand(0,3)]?>"> <?php echo $t['nombre']?></div>
             
             <?php
             $video->campos=array("v.*,(SELECT count(codvideo) FROM descargas WHERE codvideo=v.codvideo) as descarga ");
             $video->tabla="video v";
             $Nivel=$_SESSION['Nivel'];
-        $vid=$video->getRecords("codtematica=".$t['codtematica']." and activo=1 and nivel=$Nivel ORDER BY descarga DESC,fechavideo DESC  LIMIT 0,20");
+            if($Nivel!=1){
+                $ResNivel="and nivel=$Nivel";
+            }else{
+                $ResNivel="";
+            }
+            
+        $vid=$video->getRecords("codtematica=".$t['codtematica']." and activo=1 $ResNivel ORDER BY descarga DESC,fechavideo DESC  LIMIT 0,20");
         ?>
         <table class="table table-bordered">
         <tr>
         <?php 
         $i=0;
         foreach($vid as $v){$i++;
+         switch($v['nivel']){
+            case 1:{$textonivel="SuperAdmin";}break;
+            case 2:{$textonivel="Prensa";}break;
+            case 3:{$textonivel="Producción";}break;
+            case 4:{$textonivel="Programación";}break;
+          }
             ?>
-            <td>
+            <td class="<?php echo $textonivel;?> cv">
             <div class="panel panel-warning">
             <div class="panel-heading">
-            <?php echo $v['nombre']?></div></div>
+            <?php echo $v['nombre']?><span class="badge badge-info pull-right"><?php echo $textonivel?></span></div></div>
            <video src="archivosvideos/mp4/<?php echo $v['videomp4']?>" width="290" controls preload="none"></video>
            <br>
            <span class="badge badge-orange"><?php echo fecha2Str($v['fechavideo'])?></span>
