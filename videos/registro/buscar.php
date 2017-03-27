@@ -12,7 +12,7 @@ print_r($_POST);
 echo "</pre>";*/
 $Nivel=$_SESSION['Nivel'];
 if($Nivel==1){
-    $textonivel="";
+    $textonivel=" and nivel LIKE '$nivelusuario'";
 }else{
     $textonivel="and nivel=$Nivel";
 }
@@ -31,10 +31,18 @@ $tematica=new tematica;
 <?php foreach($vid as $v){$i++;
   $tem=$tematica->mostrarTodoRegistro("codtematica=".$v['codtematica'],"","");  
   $tem=array_shift($tem);
+  //$usua=$usuario->getRecords("codusuarios=".$v['id']);
+  //$usua=array_shift($usua);
+  switch($v['nivel']){
+    case 1:{$textonivel="SuperAdmin";}break;
+    case 2:{$textonivel="Prensa";}break;
+    case 3:{$textonivel="Producción";}break;
+    case 4:{$textonivel="Programación";}break;
+  }
 ?>    
 <div class="col-lg-4 col-sm-4 col-xs-4">
     <div class="well with-header with-footer">
-    <div class="header bordered-red"><?php echo $v['nombre']?></div>
+    <div class="header bordered-red"><?php echo $v['nombre']?><span class="badge badge-info pull-right"><?php echo $textonivel?></span></div>
     
     
     
