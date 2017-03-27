@@ -34,6 +34,7 @@ include_once($folder."cabecerahtml.php");
                     <th>Temática</th>
                     <th>Tipo</th>
                     <th>Soporte</th><?php */?>
+                    <th></th>
                     <th>Fecha</th>
                     <th></th>
                 </tr>
@@ -79,6 +80,16 @@ include_once($folder."cabecerahtml.php");
                    </select>
                 </label>
                 </td> <?php */?>
+                <td>
+                <?php if($_SESSION['Nivel']==1){?>Usuarios<select name="nivelusuario">
+                        <option value="%">Todos</option>
+                        <option value="1">SuperAdmin</option>
+                        <option value="2">Prensa</option>
+                        <option value="3">Producción</option>
+                        <option value="4">Programación</option>
+                    </select>
+                    <?php }?>
+                </td>
                 <td>
                     Desde:<br>
                     <input type="date" class="form-control input-ls" name="fechainicio" value="<?php echo date("Y-m-d");?>" required>
